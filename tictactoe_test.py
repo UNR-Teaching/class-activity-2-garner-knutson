@@ -223,5 +223,22 @@ class TestHasThreeInARow(unittest.TestCase):
         self.assertEqual(self.game.has_three_in_a_row(), 0)
 
 
+class TestBoardFull(unittest.TestCase):
+    def setUp(self):
+        self.game = Board()
+
+    def test_board_full(self):
+        self.game.board = [['X', 'O', 'X'],
+                           ['X', 'O', 'O'],
+                           ['O', 'X', 'O']]
+        self.assertTrue(self.game.board_full())
+
+    def test_board_not_empty(self):
+        self.game.board = [['X', 'O', 'X'],
+                           ['X', 'O', 'O'],
+                           ['O', 'X', '_']]
+        self.assertFalse(self.game.board_full())
+
+
 if __name__ == '__main__':
     unittest.main()
