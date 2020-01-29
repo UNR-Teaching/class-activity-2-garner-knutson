@@ -30,30 +30,40 @@ class Board(object):
 
         pass
 
+    def check_rows(self):
+        # Check for three in a row in the rows
+        for row in self.board:
+            if row[0] == row[1] == row[2] and row[0] != '_':
+                return 1 if row[0] == 'X' else 2
+        return 0
+
+    def check_columns(self):
+        # Check for 3 in a row in a column
+        for column in list(map(list, zip(*self.board))):
+            if column[0] == column[1] == column[2] and column[0] != '_':
+                return 1 if column[0] == 'X' else 2
+        return 0
+
+    def check_diagonals(self):
+        # Check for 3 in a row in a diagonal
+        if self.board[0][0] == self.board[1][1] == self.board[2][2] and self.board[0][0] != '_':
+            return 1 if self.board[0][0] == 'X' else 2
+        elif self.board[0][2] == self.board[1][1] == self.board[2][0] and self.board[0][2] != '_':
+            return 1 if self.board[0][2] == 'X' else 2
+        else:
+            return 0
+
     def has_three_in_a_row(self):
         """
                 Checks to see if there is a current winner of the game
 
                 :return: 1 if player 1 has won, 2 if player 2 has won or 0 if no one has won
-                """
-
-        # Check for three in a row in the rows
-        for row in self.board:
-            if row[0] == row[1] == row[2] and row[0] != '_':
-                return 1 if row[0] == 'X' else 2
-
-        # Check for 3 in a row in a column
-        for column in list(map(list, zip(*self.board))):
-            if column[0] == column[1] == column[2] and column[0] != '_':
-                return 1 if column[0] == 'X' else 2
-
-        # Check for 3 in a row in a diagonal
-        if self.board[0][0] == self.board[1][1] == self.board[2][2] and board[0][0] != '_':
-            return 1 if board[0][0] == 'X' else 2
-        elif self.board[0][2] == self.board[1][1] == board[2][0] and board[0][2] != '_':
-            return 1 if board[0][0] == 'X' else 2
-        else:
-            return 0
+        """
+        results = [self.check_rows(), self.check_columns(), self.check_diagonals()]
+        for result in results:
+            if result != 0:
+                return result
+        return 0
 
     def has_winner(self):
 
