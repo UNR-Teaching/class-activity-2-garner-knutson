@@ -76,6 +76,9 @@ class Board(object):
         pattern = "^[0-2]\,[0-2]$"
         return re.match(pattern, choice)
 
+    def is_marked(row, column):
+        return (board[row][column] not '_')
+
     def convert_user_input(choice):
         """
         Takes in a string and returns column and row after validating
