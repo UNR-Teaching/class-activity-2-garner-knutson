@@ -9,6 +9,10 @@ class Board(object):
         """
         Initializes the Board of size 3x3
         """
+        board = [['_', '_', '_'],
+                ['_', '_', '_'],
+                ['_', '_', '_']]
+        player1 = True
 
         pass
 
@@ -41,7 +45,9 @@ class Board(object):
         
         :return: (str) the letter representing the player who won
         """
-        
+        while not has_winner():
+            choice = input(f"Player {"1" if player1 else "2"} Make your move (row,col): ")
+         
         pass
         
 if __name__ == '__main__':
