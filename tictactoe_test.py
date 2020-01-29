@@ -40,7 +40,7 @@ class TestConvertUserInput(unittest.TestCase):
         self.assertEqual(Board.convert_user_input("0,0"), (0,0))
 
 
-class TestHasThreeInARow(unittest.TestCase):
+class TestRows(unittest.TestCase):
     def setUp(self):
         self.game = Board()
 
@@ -86,26 +86,21 @@ class TestHasThreeInARow(unittest.TestCase):
 
         self.assertEqual(self.game.check_rows(), 2)
 
-    def test_diagonal1_player1(self):
-        self.game.board = [['X', '_', '_'],
-                           ['_', 'X', '_'],
-                           ['_', '_', 'X']]
+    def test_empty(self):
+        self.game.board = [['_', '_', '_'],
+                           ['_', '_', '_'],
+                           ['_', '_', '_']]
+        self.assertEqual(self.game.check_rows(), 0)
 
-        self.assertEqual(self.game.check_diagonals(), 1)
+    def test_no_rows(self):
+        self.game.board = [['X', '_', 'O'],
+                           ['_', 'X', 'O'],
+                           ['_', 'X', 'O']]
+        self.assertEqual(self.game.check_rows(), 0)
 
-    def test_diagonal1_player2(self):
-        self.game.board = [['O', '_', '_'],
-                           ['_', 'O', '_'],
-                           ['_', '_', 'O']]
-
-        self.assertEqual(self.game.check_diagonals(), 2)
-
-    def test_diagonal2_player1(self):
-        self.game.board = [['_', '_', 'X'],
-                           ['_', 'X', '_'],
-                           ['X', '_', '_']]
-
-        self.assertEqual(self.game.check_diagonals(), 1)
+class TestColumns(unittest.TestCase):
+    def setUp(self):
+        self.game = Board()
 
     def test_column1_player1(self):
         self.game.board = [['X', '_', '_'],
@@ -153,6 +148,72 @@ class TestHasThreeInARow(unittest.TestCase):
         self.game.board = [['_', '_', '_'],
                            ['_', '_', '_'],
                            ['_', '_', '_']]
+        self.assertEqual(self.game.check_columns(), 0)
+
+    def test_no_cols(self):
+        self.game.board = [['X', 'X', 'X'],
+                           ['_', 'O', 'O'],
+                           ['_', 'X', 'O']]
+        self.assertEqual(self.game.check_columns(), 0)
+
+class TestDiagonal(unittest.TestCase):
+    def setUp(self):
+        self.game = Board()
+
+    def test_diagonal1_player1(self):
+        self.game.board = [['X', '_', '_'],
+                           ['_', 'X', '_'],
+                           ['_', '_', 'X']]
+
+        self.assertEqual(self.game.check_diagonals(), 1)
+
+    def test_diagonal1_player2(self):
+        self.game.board = [['O', '_', '_'],
+                           ['_', 'O', '_'],
+                           ['_', '_', 'O']]
+
+        self.assertEqual(self.game.check_diagonals(), 2)
+
+    def test_diagonal2_player1(self):
+        self.game.board = [['_', '_', 'X'],
+                           ['_', 'X', '_'],
+                           ['X', '_', '_']]
+
+        self.assertEqual(self.game.check_diagonals(), 1)
+
+    def test_empty(self):
+        self.game.board = [['_', '_', '_'],
+                           ['_', '_', '_'],
+                           ['_', '_', '_']]
+        self.assertEqual(self.game.check_diagonals(), 0)
+
+    def test_no_cols(self):
+        self.game.board = [['X', 'X', 'X'],
+                           ['_', 'O', 'O'],
+                           ['_', 'X', 'O']]
+        self.assertEqual(self.game.check_diagonals(), 0)
+
+class TestHasThreeInARow(unittest.TestCase):
+    def setUp(self):
+        self.game = Board()
+
+    def test_player1_threeInARow(self):
+        self.game.board = [['X', '_', 'O'],
+                           ['X', 'O', '_'],
+                           ['X', '_', '_']]
+        self.assertEqual(self.game.has_three_in_a_row(), 1)
+
+    def test_player2_threeInARow(self):
+        self.game.board = [['X', '_', 'O'],
+                           ['O', 'O', 'O'],
+                           ['X', 'X', '_']]
+        self.assertEqual(self.game.has_three_in_a_row(), 2)
+
+
+    def test_empty(self):
+        self.game.board = [['_', '_', '_'],
+                           ['_', '_', '_'],
+                           ['_', '_', '_']]
         self.assertEqual(self.game.has_three_in_a_row(), 0)
 
     def test_cats_game(self):
@@ -160,8 +221,6 @@ class TestHasThreeInARow(unittest.TestCase):
                            ['X', 'O', 'O'],
                            ['O', 'X', 'O']]
         self.assertEqual(self.game.has_three_in_a_row(), 0)
-
-
 
 
 if __name__ == '__main__':

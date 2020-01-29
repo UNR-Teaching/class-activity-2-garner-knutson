@@ -65,6 +65,14 @@ class Board(object):
                 return result
         return 0
 
+    def board_full(self):
+        for row in self.board:
+            for i in row:
+                if i != '_':
+                    return False
+
+        return True
+
     def has_winner(self):
 
         pass
