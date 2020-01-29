@@ -1,6 +1,7 @@
 """ Note: Although the skeleton below is in Python, you may use any programming language you want so long as the language supports object-oriented programming,
           and you make use of relevant object-oriented design principles.
 """
+import re
 
 
 class Board(object):
@@ -58,15 +59,14 @@ class Board(object):
 
         pass
 
-    def is_input_len_two(choice):
+    def is_within_bounds(choice):
         """
-        :param choice: (str)
-        Returns true if split is lenth 2,
-        else false
+        Returns true if the numeric input is within the bounds of the board
         """
-        return len(choice.split(',')) == 2
+        pattern = "^[0-2]\,[0-2]$"
+        return re.match(pattern, choice)
 
-    def validate_user_input(choice):
+    def convert_user_input(choice):
         """
         Takes in a string and returns column and row after validating
         """
@@ -80,7 +80,7 @@ class Board(object):
 
         # print(f"ROW: {row} COL: {column}")
         # return column and row as tuple
-        return (column, row)
+        return (row, column)
 
     def play_game(self):
         """
@@ -90,7 +90,18 @@ class Board(object):
         :return: (str) the letter representing the player who won
         """
         while not self.has_winner():
+
             choice = input(f"Player {'1' if self.player1 else '2'} Make your move (row,col): ")
+
+            if is_within_bounds(choice):
+
+                print("input is correct")
+                (row, column) = convert_user_input(choice)
+
+            else:
+
+                print("input is incorrect skipping to top of loop")
+                continue
 
         pass
 
