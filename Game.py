@@ -10,7 +10,7 @@ class Game:
 
     def play_game(self):
         while not self.board.has_winner():
-                self.get_player_move(self.player1.player_number)
+            self.get_player_move(self.player1.player_number)
             if not self.board.has_winner():
                 self.get_player_move(self.player2.player_number)
 
