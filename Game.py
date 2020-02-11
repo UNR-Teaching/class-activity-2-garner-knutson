@@ -8,23 +8,20 @@ class Game:
         self.player1 = Player(1)
         self.player2 = Player(2)
 
-
-   def play_game(self):
+    def play_game(self):
         while not self.board.has_winner():
-            move = self.player1.get_move()
-            while not self.board.add_move(move):
-                move = self.player1.get_move()
+                self.get_player_move(self.player1.player_number)
             if not self.board.has_winner():
-                self.player2.get_move()
+                self.get_player_move(self.player2.player_number)
 
-            # choice = input(f"Player {'1' if self.player1 else '2'} Make your move (row,col): ")
-            #
-            # if is_within_bounds(choice):
-            #
-            #     print("input is correct")
-            #     (row, column) = convert_user_input(choice)
-            #
-            # else:
-            #
-            #     print("input is incorrect skipping to top of loop")
-            #     continue
+    def get_player_move(self, player_number):
+
+        if player_number == 1:
+            move = self.player1.get_move()
+        while not self.board.add_move(move):
+            move = self.player1.get_move()
+
+        else:
+            move = self.player2.get_move()
+            while not self.board.add_move(move):
+                move = self.player2.get_move()

@@ -3,6 +3,7 @@ import sys
 
 class Player:
     def __init__(self, player_number):
+        self.player_number = player_number
         if player_number == 1:
             self.player_symbol = 'X'
 
