@@ -100,28 +100,7 @@ class Board(object):
         # return column and row as tuple
         return (row, column)
 
-    # def play_game(self):
-    #     """
-    #     Takes moves from raw_input as comma-separated list in form (column, row, player)
-    #         and makes a move. When a winner has been determined, the game ends
-    #
-    #     :return: (str) the letter representing the player who won
-    #     """
-    #     while not self.has_winner():
-    #
-    #         choice = input(f"Player {'1' if self.player1 else '2'} Make your move (row,col): ")
-    #
-    #         if is_within_bounds(choice):
-    #
-    #             print("input is correct")
-    #             (row, column) = convert_user_input(choice)
-    #
-    #         else:
-    #
-    #             print("input is incorrect skipping to top of loop")
-    #             continue
-    #
-    #     pass
+
 
 
 # if __name__ == '__main__':
