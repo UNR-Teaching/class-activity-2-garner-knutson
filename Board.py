@@ -70,9 +70,12 @@ class Board(object):
 
         return True
 
-    def has_winner(self):
-
-        pass
+    def game_over(self):
+        three_in_a_row = self.has_three_in_a_row()
+        if three_in_a_row:
+            return three_in_a_row
+        else:
+            return self.board_full()
 
     def is_within_bounds(choice):
         """
