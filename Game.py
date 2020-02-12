@@ -15,6 +15,7 @@ class Game:
             if not self.board.game_over():
                 self.board.print_board()
                 self.get_player_move(self.player2.player_number)
+        print(f'Player {self.board.game_over()} won')
 
     def get_player_move(self, player_number):
         if player_number == 1:
