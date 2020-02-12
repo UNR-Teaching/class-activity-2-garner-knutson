@@ -1,5 +1,5 @@
 class Move(object):
 
-    def __init__(self, row, col, player):
-        self.location = (row,col)
+    def __init__(self, location, player):
+        self.location = location
         self.player = player

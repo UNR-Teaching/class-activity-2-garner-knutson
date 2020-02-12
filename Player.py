@@ -16,14 +16,14 @@ class Player(object):
 			print('Invalid player number')
 			sys.exit(0)
 
-	def is_within_bounds(self,choice):
+	def is_within_bounds(self, choice):
 		"""
 		Returns true if the numeric input is within the bounds of the board
 		"""
 		pattern = "^[0-2]\,[0-2]$"
 		return re.match(pattern, choice)
 
-	def convert_user_input(self,choice):
+	def convert_user_input(self, choice):
 		"""
 		Takes in a string and returns column and row after validating
 		"""
@@ -35,7 +35,7 @@ class Player(object):
 	def get_move(self):
 		choice = input(f"Player {'1' if (self.player_number == 1) else '2'} Make your move (row,col): ")
 		if self.is_within_bounds(choice):
-			move = Move(self.convert_user_input(choice),self)
+			move = Move(self.convert_user_input(choice), self)
 			return move
 		else:
 			return None

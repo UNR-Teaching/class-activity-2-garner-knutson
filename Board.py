@@ -72,8 +72,8 @@ class Board(object):
 		if not move or not self.check_bounds(move) or self.is_marked(move.location[0], move.location[1]):
 			return False
 		self.board[move.location[0]][move.location[1]] = move.player.player_symbol
+		return True
 
-# if __name__ == '__main__':
-#     board = Board()
-#     winner = board.play_game()
-#     print("{} has won!".format(winner))
+	def print_board(self):
+		for row in self.board:
+			print(f'{row[0]} {row[1]} {row[2]}')

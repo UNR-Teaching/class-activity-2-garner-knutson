@@ -10,8 +10,10 @@ class Game:
 
     def play_game(self):
         while not self.board.game_over():
+            self.board.print_board()
             self.get_player_move(self.player1.player_number)
             if not self.board.game_over():
+                self.board.print_board()
                 self.get_player_move(self.player2.player_number)
 
     def get_player_move(self, player_number):
