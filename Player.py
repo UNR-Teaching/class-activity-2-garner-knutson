@@ -3,7 +3,7 @@ import re
 from Move import Move
 
 
-class Player:
+class Player(object):
 	def __init__(self, player_number):
 		self.player_number = player_number
 		if player_number == 1:
@@ -16,14 +16,14 @@ class Player:
 			print('Invalid player number')
 			sys.exit(0)
 
-	def is_within_bounds(choice):
+	def is_within_bounds(self,choice):
 		"""
 		Returns true if the numeric input is within the bounds of the board
 		"""
 		pattern = "^[0-2]\,[0-2]$"
 		return re.match(pattern, choice)
 
-	def convert_user_input(choice):
+	def convert_user_input(self,choice):
 		"""
 		Takes in a string and returns column and row after validating
 		"""
