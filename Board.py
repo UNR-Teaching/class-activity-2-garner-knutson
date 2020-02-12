@@ -12,21 +12,6 @@ class Board(object):
 					  ['_', '_', '_']]
 		self.player1 = True
 
-		pass
-
-	def mark_square(self, column, row, player):
-		"""
-		Marks a square at coordinate (column, row) for player
-
-		:param column: (int) the 0-indexed column of the Board to mark
-		:param row: (int) the 0-indexed row of the Board to mark
-		:param player: (str) the X or O representation of which player to mark in square
-
-		:return: ????
-		"""
-
-		pass
-
 	def check_rows(self):
 		# Check for three in a row in the rows
 		for row in self.board:
@@ -87,9 +72,6 @@ class Board(object):
 		if not move or not self.check_bounds(move) or self.is_marked(move.location[0], move.location[1]):
 			return False
 		self.board[move.location[0]][move.location[1]] = move.player.player_symbol
-
-
-
 
 # if __name__ == '__main__':
 #     board = Board()
