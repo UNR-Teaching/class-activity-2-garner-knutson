@@ -88,16 +88,9 @@ class Board(object):
         """
         Takes in a string and returns column and row after validating
         """
-        # Split the choice by each element
         choice_l = choice.split(',')
-        # print(f"CHOICE: {choice_l}")
-        # Assign row and column and convert to integer
-        ########### Try to convert to integer
         row = int(choice_l[0])
         column = int(choice_l[1])
-
-        # print(f"ROW: {row} COL: {column}")
-        # return column and row as tuple
         return (row, column)
 
 
