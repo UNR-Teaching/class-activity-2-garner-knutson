@@ -33,10 +33,9 @@ class Player:
 		return (row, column)
 
 	def get_move(self):
-		while True:
-			choice = input(f"Player {'1' if (self.player_number == 1) else '2'} Make your move (row,col): ")
-			if self.is_within_bounds(choice):
-				move = Move(self.convert_user_input(choice),self)
-				return move
-			else:
-				print("Invalid Move.")
+		choice = input(f"Player {'1' if (self.player_number == 1) else '2'} Make your move (row,col): ")
+		if self.is_within_bounds(choice):
+			move = Move(self.convert_user_input(choice),self)
+			return move
+		else:
+			return None
