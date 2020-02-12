@@ -77,24 +77,16 @@ class Board(object):
 		else:
 			return self.board_full()
 
-	def is_within_bounds(choice):
-		"""
-		Returns true if the numeric input is within the bounds of the board
-		"""
-		pattern = "^[0-2]\,[0-2]$"
-		return re.match(pattern, choice)
-
 	def is_marked(self, row, column):
 		return self.board[row][column] != '_'
 
-	def convert_user_input(choice):
-		"""
-		Takes in a string and returns column and row after validating
-		"""
-		choice_l = choice.split(',')
-		row = int(choice_l[0])
-		column = int(choice_l[1])
-		return (row, column)
+	def check_bounds(self, move):
+		return move.location[0] >= 0 or move.location[0] <= 2 or move.location[1] >= 0 or move.location[1] <= 2
+
+	def add_move(self, move):
+		if not move or not self.check_bounds(move) or self.is_marked(move.location[0], move.location[1]):
+			return False
+		self.board[move.location[0]][move.location[1]] = move.player.player_symbol
 
 
 
